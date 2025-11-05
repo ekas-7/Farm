@@ -1,51 +1,55 @@
 export const steps = [
   {
-    title: "Step 1",
+    title: "Farmers List Products",
     description:
-      "Enter your location. Type in your address, or pin your location by enabling location services.",
+      "Farmers create profiles and list their fresh produce with separate retail and bulk pricing. Simple inventory management for all their products.",
     image: "/order.png",
-    alt: "Phone showing delivery address",
+    alt: "Farmer listing products",
+    icon: "👨‍🌾",
   },
   {
-    title: "Step 2",
+    title: "Clients Place Orders",
     description:
-      "Now select a restaurant and a menu item. You're one step closer to the perfect quick bite.",
+      "MSMEs browse bulk products for their business needs, while retail customers shop for fresh produce. Both get the best prices directly from farmers.",
     image: "/restarant.png",
-    alt: "Restaurant storefront illustration",
+    alt: "Customers ordering products",
+    icon: "🏢",
   },
   {
-    title: "Step 3",
-    description: "Settle your payment. Then, sit back and relax as we make your food ready!",
+    title: "WhatsApp Notifications",
+    description: "Instant order updates via WhatsApp. Farmers get notified of new orders, customers get confirmation. Simple, fast, and convenient.",
     image: "/file.svg",
-    alt: "Receipt illustration",
+    alt: "WhatsApp notifications",
+    icon: "💬",
   },
 ];
 
 export const workItems = [
   {
-    title: "As a rider",
+    title: "For Farmers",
     description:
-      "Earn money by delivering food from restaurants. All you need are the skills and a bike.",
+      "Expand your market reach. List your produce, set bulk and retail prices, and connect directly with businesses and consumers. No middlemen.",
     image: "/scooter.png",
-    alt: "Delivery scooter illustration",
-    cta: "Ride with us",
+    alt: "Farmer with produce",
+    cta: "Start Selling",
     reverse: false,
   },
   {
-    title: "As a partner",
+    title: "For Businesses (MSMEs)",
     description:
-      "QuickBite helps restaurants grow with online ordering, loyalty programs, and more.",
+      "Source quality raw produce in bulk at competitive prices. Perfect for food processing industries looking for reliable, fresh supply.",
     image: "/restarant.png",
-    alt: "Restaurant building illustration",
-    cta: "Partner with us",
+    alt: "Business purchasing bulk orders",
+    cta: "Browse Bulk Products",
     reverse: true,
   },
   {
-    title: "As a colleague",
-    description: "Be part of a team that's building a top-notch delivery service.",
+    title: "For Retail Customers",
+    description: "Get farm-fresh vegetables and produce delivered to your door. Support local farmers while enjoying the freshest ingredients.",
     image: "/colluge.png",
-    alt: "Happy colleague illustration",
-    cta: "Work with us",
+    alt: "Customer receiving fresh produce",
+    cta: "Shop Now",
     reverse: false,
   },
 ];
+
