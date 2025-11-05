@@ -13,9 +13,11 @@ type WorkItem = {
 export default function WorkItems({ items }: { items: WorkItem[] }) {
   return (
     <section className="mt-16">
-      <div className="flex items-center justify-between border-y border-[#c8cdd3] py-6">
-        <h2 className="text-2xl font-semibold">Work with QuickBite</h2>
-        <span className="text-2xl font-semibold">⌄</span>
+      <div className="flex items-center justify-between border-y border-[#c8cdd3] py-6 px-4 md:px-0">
+        <h2 className="text-xl font-semibold text-gray-900 md:text-2xl">Join AgriGet Platform</h2>
+        <svg className="h-6 w-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
       </div>
       <div className="space-y-12 border-b border-[#c8cdd3] py-12">
         {items.map((item) => (
@@ -32,13 +34,14 @@ export default function WorkItems({ items }: { items: WorkItem[] }) {
                 width={220}
                 height={180}
                 className="h-full w-full object-contain"
+                style={{ mixBlendMode: 'multiply' }}
               />
             </div>
             <div className={`flex-1 text-center md:text-left ${item.reverse ? "md:text-right" : ""}`}>
-              <h3 className="text-2xl font-semibold">{item.title}</h3>
-              <p className="mt-3 text-base leading-relaxed text-[#4b5563]">{item.description}</p>
+              <h3 className="text-2xl font-semibold text-gray-900">{item.title}</h3>
+              <p className="mt-3 text-base leading-relaxed text-gray-600">{item.description}</p>
               <button
-                className="mt-6 inline-flex items-center justify-center rounded-full border-2 border-[#1a1f3d] px-6 py-2 text-sm font-semibold text-[#1a1f3d] transition-colors hover:bg-[#1a1f3d] hover:text-white"
+                className="mt-6 inline-flex items-center justify-center rounded-full border-2 border-green-600 bg-white px-6 py-2 text-sm font-semibold text-green-700 transition-all hover:bg-green-600 hover:text-white active:scale-95"
               >
                 {item.cta}
               </button>

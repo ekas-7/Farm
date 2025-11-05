@@ -6,7 +6,6 @@ type Step = {
   description: string;
   image: string;
   alt: string;
-  icon?: string;
 };
 
 export default function Steps({ steps }: { steps: Step[] }) {
@@ -14,7 +13,9 @@ export default function Steps({ steps }: { steps: Step[] }) {
     <section className="mt-12">
       <div className="flex items-center justify-between border-y border-[#c8cdd3] py-6 px-4 md:px-0">
         <h2 className="text-xl font-semibold text-gray-900 md:text-2xl">How AgriGet Works</h2>
-        <span className="text-2xl font-semibold text-gray-600">⌄</span>
+        <svg className="h-6 w-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
       </div>
       <div className="grid gap-8 border-b border-[#c8cdd3] py-12 text-center md:grid-cols-3 md:gap-12 md:divide-x md:divide-[#c8cdd3]">
         {steps.map((step, index) => (
@@ -26,12 +27,8 @@ export default function Steps({ steps }: { steps: Step[] }) {
                 width={180}
                 height={180}
                 className="h-36 w-auto object-contain md:h-44"
+                style={{ mixBlendMode: 'multiply' }}
               />
-              {step.icon && (
-                <div className="absolute -top-2 -right-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-600 text-2xl shadow-lg">
-                  {step.icon}
-                </div>
-              )}
             </div>
             <div className="flex items-center gap-2">
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-green-100 text-sm font-bold text-green-700">
