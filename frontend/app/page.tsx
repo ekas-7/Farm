@@ -4,6 +4,7 @@ import Steps from "./components/Steps";
 import WorkItems from "./components/WorkItems";
 import Download from "./components/Download";
 import Footer from "./components/Footer";
+import CropListings from "./components/CropListings";
 import { steps, workItems } from "./data/home";
 
 export default function Home() {
@@ -13,8 +14,15 @@ export default function Home() {
 
       <main className="mx-auto w-full max-w-6xl px-6 pb-24">
         <Hero />
-        <Steps steps={steps} />
-        <WorkItems items={workItems} />
+        <div id="listings">
+          <CropListings />
+        </div>
+        <div id="how">
+          <Steps steps={steps} />
+        </div>
+        <div id="join">
+          <WorkItems items={workItems} />
+        </div>
         <Download />
       </main>
 

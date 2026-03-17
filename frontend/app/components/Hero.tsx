@@ -1,64 +1,83 @@
 import Image from "next/image";
 
-
 export default function Hero() {
   return (
-    <section className="grid items-center gap-8 pb-16 pt-6 md:grid-cols-2 md:gap-12">
-      <div className="flex w-full flex-col items-center text-center px-4 md:items-start md:text-left">
-        <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-green-100 px-4 py-2 text-sm font-medium text-green-700">
-          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-          </svg>
-          Direct from Farm to Your Business
+    <section className="relative grid items-center gap-10 pb-20 pt-8 md:grid-cols-2 md:gap-16">
+      {/* Left */}
+      <div className="flex w-full flex-col items-start text-left">
+        <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-green-200 bg-green-50 px-4 py-2 text-sm font-semibold text-green-700">
+          <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+          Direct from Farm · Punjab, India
         </div>
-        <h1 className="text-3xl font-extrabold leading-tight text-gray-900 md:text-5xl lg:text-6xl">
-          Connect Farmers with Businesses & Consumers
+
+        <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight text-[#1a1f3d] md:text-5xl lg:text-[3.75rem]">
+          Fresh Crops,<br />
+          <span className="text-green-600">Direct from Farmers</span>
         </h1>
-        <p className="mt-4 text-base text-gray-600 md:text-lg max-w-xl">
-          AgriGet bridges the gap between farmers and markets. Get fresh produce in bulk for your business or buy retail for your home.
+
+        <p className="mt-5 max-w-lg text-base leading-relaxed text-gray-500 md:text-lg">
+          AgriGet connects Punjab&apos;s farmers with businesses and consumers. Buy in bulk for your MSME or order retail — no middlemen, always fresh.
         </p>
-        <div className="mt-8 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-          <button className="rounded-full bg-green-600 px-8 py-3 text-base font-semibold text-white shadow-lg transition-all hover:bg-green-700 hover:shadow-xl active:scale-95">
-            For Businesses (B2B)
-          </button>
-          <button className="rounded-full border-2 border-green-600 bg-white px-8 py-3 text-base font-semibold text-green-700 shadow-lg transition-all hover:bg-green-50 hover:shadow-xl active:scale-95">
-            For Customers (B2C)
-          </button>
+
+        {/* Stats row */}
+        <div className="mt-8 flex flex-wrap gap-6">
+          {[
+            { value: "500+", label: "Farmers" },
+            { value: "12K+", label: "Orders Fulfilled" },
+            { value: "98%", label: "Fresh Guarantee" },
+          ].map(({ value, label }) => (
+            <div key={label} className="text-left">
+              <p className="text-2xl font-extrabold text-[#1a1f3d]">{value}</p>
+              <p className="text-xs font-medium text-gray-400 uppercase tracking-wide">{label}</p>
+            </div>
+          ))}
         </div>
-        <div className="mt-6 flex flex-wrap justify-center items-center gap-3 text-sm text-gray-500">
-          <span className="flex items-center gap-1">
-            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-            </svg>
-            WhatsApp enabled
-          </span>
-          <span>•</span>
-          <span className="flex items-center gap-1">
-            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-            </svg>
-            Direct delivery
-          </span>
-          <span>•</span>
-          <span className="flex items-center gap-1">
-            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            Fresh produce
-          </span>
+
+        {/* Trust badges */}
+        <div className="mt-8 flex flex-wrap items-center gap-3">
+          {[
+            "WhatsApp Enabled",
+            "Direct Delivery",
+            "Farm Fresh",
+          ].map((badge) => (
+            <span key={badge} className="rounded-full border border-[#c8cdd3] bg-white px-3 py-1.5 text-xs font-semibold text-gray-600 shadow-sm">
+              {badge}
+            </span>
+          ))}
         </div>
       </div>
 
-      <div className="flex items-center justify-center md:justify-end">
-        <Image
-          src="/farming/FARMING_7.png"
-          width={500}
-          height={500}
-          alt="Fresh farm produce"
-          className="h-auto w-full max-w-md object-contain"
-          style={{ mixBlendMode: 'multiply' }}
-          priority
-        />
+      {/* Right — hero image */}
+      <div className="relative flex items-center justify-center">
+        <div className="relative h-[420px] w-full overflow-hidden rounded-3xl shadow-2xl">
+          <Image
+            src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=900&q=80&fit=crop"
+            fill
+            alt="Farmer in a lush green field in Punjab"
+            className="object-cover"
+            priority
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+
+          {/* Floating card */}
+          <div className="absolute bottom-5 left-5 flex items-center gap-3 rounded-2xl bg-white/95 px-4 py-3 shadow-lg backdrop-blur-sm">
+            <div className="h-10 w-10 overflow-hidden rounded-xl">
+              <Image
+                src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=80&q=80&fit=crop"
+                width={40}
+                height={40}
+                alt="Fresh wheat"
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div>
+              <p className="text-xs font-bold text-[#1a1f3d]">Wheat — Grade A</p>
+              <p className="text-xs text-gray-500">₹28/kg · Ludhiana, Punjab</p>
+            </div>
+            <span className="ml-2 rounded-full bg-green-100 px-2 py-0.5 text-xs font-bold text-green-700">LIVE</span>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -1,42 +1,61 @@
 import Image from "next/image";
-import React from "react";
 
 export default function Download() {
   return (
-    <section className="mt-16">
-      <div className="flex items-center justify-between border-y border-[#c8cdd3] py-6 px-4 md:px-0">
-        <h2 className="text-xl font-semibold text-gray-900 md:text-2xl">Download AgriGet App</h2>
-        <svg className="h-6 w-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </div>
-      <div className="flex flex-col items-center gap-12 border-b border-[#c8cdd3] py-12 md:flex-row md:justify-between">
-        <div className="max-w-xl text-center md:text-left px-4 md:px-0">
-          <h3 className="text-2xl font-semibold text-gray-900">Order Fresh Produce Easily!</h3>
-          <p className="mt-4 text-base leading-relaxed text-gray-600">
-            Get fresh, farm-to-table produce delivered to your door with AgriGet. Connect directly with local farmers for the freshest vegetables and bulk orders!
-          </p>
-          <button className="mt-6 rounded-full bg-green-600 px-8 py-3 text-sm font-semibold text-white transition-all hover:bg-green-700 active:scale-95 shadow-lg">
-            Download App
-          </button>
+    <section className="mt-24">
+      <div className="relative overflow-hidden rounded-3xl bg-[#1a1f3d] px-8 py-14 md:px-14 md:py-16">
+        {/* Background image overlay */}
+        <div className="absolute inset-0 opacity-20">
+          <Image
+            src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1400&q=80&fit=crop"
+            fill
+            alt="Farm background"
+            className="object-cover"
+            sizes="100vw"
+          />
         </div>
-        <div className="flex items-center gap-10">
-          <Image
-            src="/farming/FARMING_8.png"
-            alt="Fresh vegetables"
-            width={176}
-            height={176}
-            className="h-40 w-40 object-contain"
-            style={{ mixBlendMode: 'multiply' }}
-          />
-          <Image
-            src="/farming/FARMING_7.png"
-            alt="Farm produce"
-            width={200}
-            height={240}
-            className="h-52 w-40 object-contain"
-            style={{ mixBlendMode: 'multiply' }}
-          />
+
+        <div className="relative z-10 flex flex-col items-start gap-10 md:flex-row md:items-center md:justify-between">
+          <div className="max-w-xl">
+            <p className="mb-3 text-sm font-bold uppercase tracking-widest text-green-400">Available Soon</p>
+            <h2 className="text-3xl font-extrabold leading-tight text-white md:text-4xl">
+              Order Fresh Produce<br />
+              <span className="text-green-400">Directly from Farmers</span>
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-gray-300">
+              Farm-to-table, simplified. Connect with local Punjab farmers, track your order, and get the freshest produce delivered to your door or business.
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              {["No Middlemen", "Best Farm Prices", "WhatsApp Updates"].map((f) => (
+                <span key={f} className="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-sm">
+                  {f}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Product images */}
+          <div className="flex shrink-0 items-end gap-4">
+            <div className="relative h-48 w-36 overflow-hidden rounded-2xl shadow-2xl ring-2 ring-white/20">
+              <Image
+                src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80&fit=crop"
+                fill
+                alt="Fresh vegetables"
+                className="object-cover"
+                sizes="144px"
+              />
+            </div>
+            <div className="relative h-36 w-28 overflow-hidden rounded-2xl shadow-2xl ring-2 ring-white/20">
+              <Image
+                src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=400&q=80&fit=crop"
+                fill
+                alt="Fresh wheat grain"
+                className="object-cover"
+                sizes="112px"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>

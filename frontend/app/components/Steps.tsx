@@ -1,5 +1,4 @@
 import Image from "next/image";
-import React from "react";
 
 type Step = {
   title: string;
@@ -10,33 +9,42 @@ type Step = {
 
 export default function Steps({ steps }: { steps: Step[] }) {
   return (
-    <section className="mt-12">
-      <div className="flex items-center justify-between border-y border-[#c8cdd3] py-6 px-4 md:px-0">
-        <h2 className="text-xl font-semibold text-gray-900 md:text-2xl">How AgriGet Works</h2>
-        <svg className="h-6 w-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
+    <section className="mt-24">
+      <div className="mb-12 text-center">
+        <p className="mb-2 text-sm font-bold uppercase tracking-widest text-green-600">Simple Process</p>
+        <h2 className="text-3xl font-extrabold tracking-tight text-[#1a1f3d] md:text-4xl">
+          How AgriGet Works
+        </h2>
+        <p className="mt-3 text-gray-500">Three simple steps to connect farms with your table</p>
       </div>
-      <div className="grid gap-8 border-b border-[#c8cdd3] py-12 text-center md:grid-cols-3 md:gap-12 md:divide-x md:divide-[#c8cdd3]">
+
+      <div className="grid gap-6 md:grid-cols-3">
         {steps.map((step, index) => (
-          <div key={step.title} className="flex flex-col items-center gap-4 px-4 md:px-6">
-            <div className="relative">
+          <div
+            key={step.title}
+            className="group relative overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-[#c8cdd3] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-green-200"
+          >
+            {/* Image */}
+            <div className="relative h-52 overflow-hidden">
               <Image
                 src={step.image}
                 alt={step.alt}
-                width={180}
-                height={180}
-                className="h-36 w-auto object-contain md:h-44"
-                style={{ mixBlendMode: 'multiply' }}
+                fill
+                className="object-cover transition duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 33vw"
               />
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-green-100 text-sm font-bold text-green-700">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+              {/* Step number */}
+              <div className="absolute left-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white text-sm font-extrabold text-green-700 shadow-lg">
                 {index + 1}
-              </span>
-              <h3 className="text-lg font-semibold text-gray-900 md:text-xl">{step.title}</h3>
+              </div>
             </div>
-            <p className="text-sm leading-relaxed text-gray-600 md:text-base">{step.description}</p>
+
+            {/* Text */}
+            <div className="p-6">
+              <h3 className="text-lg font-extrabold text-[#1a1f3d]">{step.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-gray-500">{step.description}</p>
+            </div>
           </div>
         ))}
       </div>

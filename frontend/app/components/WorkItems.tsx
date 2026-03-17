@@ -1,50 +1,55 @@
 import Image from "next/image";
-import React from "react";
 
 type WorkItem = {
   title: string;
   description: string;
   image: string;
   alt: string;
-  cta: string;
   reverse?: boolean;
 };
 
 export default function WorkItems({ items }: { items: WorkItem[] }) {
   return (
-    <section className="mt-16">
-      <div className="flex items-center justify-between border-y border-[#c8cdd3] py-6 px-4 md:px-0">
-        <h2 className="text-xl font-semibold text-gray-900 md:text-2xl">Join AgriGet Platform</h2>
-        <svg className="h-6 w-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
+    <section className="mt-24">
+      <div className="mb-12 text-center">
+        <p className="mb-2 text-sm font-bold uppercase tracking-widest text-green-600">Who We Serve</p>
+        <h2 className="text-3xl font-extrabold tracking-tight text-[#1a1f3d] md:text-4xl">
+          Join AgriGet Platform
+        </h2>
+        <p className="mt-3 text-gray-500">Built for every participant in the agricultural supply chain</p>
       </div>
-      <div className="space-y-12 border-b border-[#c8cdd3] py-12">
+
+      <div className="space-y-8">
         {items.map((item) => (
           <div
             key={item.title}
-            className={`flex flex-col items-center gap-10 rounded-3xl bg-white px-8 py-10 shadow-sm md:flex-row md:items-center ${
+            className={`group flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-[#c8cdd3] md:flex-row ${
               item.reverse ? "md:flex-row-reverse" : ""
             }`}
           >
-            <div className="w-full max-w-xs md:max-w-sm">
+            {/* Image */}
+            <div className="relative h-64 shrink-0 overflow-hidden md:h-auto md:w-2/5">
               <Image
                 src={item.image}
                 alt={item.alt}
-                width={220}
-                height={180}
-                className="h-full w-full object-contain"
-                style={{ mixBlendMode: 'multiply' }}
+                fill
+                className="object-cover transition duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 40vw"
               />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent" />
             </div>
-            <div className={`flex-1 text-center md:text-left ${item.reverse ? "md:text-right" : ""}`}>
-              <h3 className="text-2xl font-semibold text-gray-900">{item.title}</h3>
-              <p className="mt-3 text-base leading-relaxed text-gray-600">{item.description}</p>
-              <button
-                className="mt-6 inline-flex items-center justify-center rounded-full border-2 border-green-600 bg-white px-6 py-2 text-sm font-semibold text-green-700 transition-all hover:bg-green-600 hover:text-white active:scale-95"
-              >
-                {item.cta}
-              </button>
+
+            {/* Text */}
+            <div className="flex flex-1 flex-col justify-center p-8 md:p-12">
+              <span className="mb-3 inline-block rounded-full bg-green-100 px-3 py-1 text-xs font-bold uppercase tracking-widest text-green-700">
+                {item.title}
+              </span>
+              <h3 className="text-2xl font-extrabold leading-tight text-[#1a1f3d] md:text-3xl">
+                {item.title}
+              </h3>
+              <p className="mt-4 max-w-md text-base leading-relaxed text-gray-500">
+                {item.description}
+              </p>
             </div>
           </div>
         ))}
