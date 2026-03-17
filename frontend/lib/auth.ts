@@ -1,11 +1,9 @@
 import { SignJWT, jwtVerify } from "jose";
 
-const SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || 
-);
+const SECRET = new TextEncoder().encode(process.env.JWT_SECRET);
 
-export const ADMIN_EMAIL = "process.env.ADMIN_EMAIL";
-export const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+export const ADMIN_EMAIL = process.env.ADMIN_EMAIL!;
+export const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD!;
 export const COOKIE_NAME = "agriget_admin_token";
 
 export async function signToken(payload: Record<string, string>) {
