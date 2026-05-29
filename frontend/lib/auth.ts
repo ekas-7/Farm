@@ -5,6 +5,7 @@ const SECRET = new TextEncoder().encode(process.env.JWT_SECRET);
 export const ADMIN_EMAIL = process.env.ADMIN_EMAIL!;
 export const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD!;
 export const COOKIE_NAME = "agriget_admin_token";
+export const FARMER_COOKIE_NAME = "agriget_farmer_token";
 
 export async function signToken(payload: Record<string, string>) {
   return new SignJWT(payload)

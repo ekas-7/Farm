@@ -14,6 +14,7 @@ export interface ICrop extends Document {
   imageUrl: string;
   season: string;
   quality: string;
+  farmerId?: mongoose.Types.ObjectId;
   createdAt: Date;
 }
 
@@ -32,6 +33,7 @@ const CropSchema = new Schema<ICrop>(
     imageUrl: { type: String, default: "" },
     season: { type: String, required: true },
     quality: { type: String, required: true },
+    farmerId: { type: Schema.Types.ObjectId, ref: "Farmer", default: null },
   },
   { timestamps: true }
 );
