@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyToken, FARMER_COOKIE_NAME } from "@/lib/auth";
-import connectDB from "@/lib/mongodb";
+import { connectDB } from "@/lib/mongodb";
 import Crop from "@/lib/models/Crop";
 
 export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {

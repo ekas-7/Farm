@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyToken, FARMER_COOKIE_NAME } from "@/lib/auth";
-import connectDB from "@/lib/mongodb";
+import { connectDB } from "@/lib/mongodb";
 import Farmer from "@/lib/models/Farmer";
 
 export async function GET(req: NextRequest) {

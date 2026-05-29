@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import connectDB from "@/lib/mongodb";
+import { connectDB } from "@/lib/mongodb";
 import Farmer from "@/lib/models/Farmer";
 import { signToken, FARMER_COOKIE_NAME } from "@/lib/auth";
 
