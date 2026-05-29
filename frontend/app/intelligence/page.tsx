@@ -112,6 +112,7 @@ type SortKey = "name" | "duration" | "yield" | "adoption";
 function VarietySection({ varieties }: { varieties: Variety[] }) {
   const [sort, setSort] = useState<SortKey>("yield");
   const [dir, setDir] = useState<1 | -1>(-1);
+  const [chartView, setChartView] = useState<"bar" | "radar">("bar");
 
   function toggle(k: SortKey) {
     if (sort === k) setDir((d) => (d === 1 ? -1 : 1));
@@ -159,6 +160,44 @@ function VarietySection({ varieties }: { varieties: Variety[] }) {
         borderRadius: 4,
       },
     ],
+  };
+
+  const ORDER_RESIST: Record<ResistanceLevel, number> = { Excellent: 4, Good: 3, Moderate: 2, Poor: 1 };
+  const ORDER_ADO2: Record<string, number> = { "Very High": 4, High: 3, Moderate: 2, Low: 1 };
+
+  // Radar chart — multi-dimension variety comparison (top 6 for readability)
+  const radarVarieties = varieties.slice(0, 6);
+  const RADAR_COLORS = [
+    ["rgba(22,163,74,0.25)", "#16a34a"],
+    ["rgba(59,130,246,0.25)", "#3b82f6"],
+    ["rgba(234,179,8,0.25)", "#ca8a04"],
+    ["rgba(239,68,68,0.25)", "#ef4444"],
+    ["rgba(168,85,247,0.25)", "#a855f7"],
+    ["rgba(249,115,22,0.25)", "#f97316"],
+  ];
+  const radarData = {
+    labels: ["Max Yield", "Min Yield", "Disease Res.", "Adoption", "Speed (inv.)"],
+    datasets: radarVarieties.map((v, i) => {
+      const maxY = "max" in v.yield ? v.yield.max : ("value" in v.yield ? (v.yield as { value: number }).value : 0);
+      const minY = "min" in v.yield ? v.yield.min : ("value" in v.yield ? (v.yield as { value: number }).value : 0);
+      const maxDur = "max" in v.duration ? v.duration.max : ("value" in v.duration ? (v.duration as { value: number }).value : 999);
+      const [bg, border] = RADAR_COLORS[i % RADAR_COLORS.length];
+      return {
+        label: v.name,
+        data: [
+          Math.min(maxY * 2, 100),
+          Math.min(minY * 2, 100),
+          (ORDER_RESIST[v.diseaseResistance] ?? 1) * 25,
+          (ORDER_ADO2[v.adoption] ?? 1) * 25,
+          Math.max(0, 100 - maxDur / 2),
+        ],
+        backgroundColor: bg,
+        borderColor: border,
+        borderWidth: 2,
+        pointBackgroundColor: border,
+        pointRadius: 3,
+      };
+    }),
   };
 
   const Th = ({ k, label }: { k: SortKey; label: string }) => (
@@ -238,20 +277,62 @@ function VarietySection({ varieties }: { varieties: Variety[] }) {
         ))}
       </div>
 
-      {/* Bar chart */}
+      {/* Chart with toggle */}
       <div className="rounded-2xl border border-[#c8cdd3] bg-white p-5 shadow-sm">
-        <h3 className="mb-4 text-sm font-bold text-[#1a1f3d]">Yield Comparison (q/acre)</h3>
-        <Bar
-          data={yieldData}
-          options={{
-            responsive: true,
-            plugins: { legend: { position: "bottom", labels: { font: { size: 11 } } } },
-            scales: {
-              x: { grid: { display: false }, ticks: { font: { size: 10 } } },
-              y: { grid: { color: "#f0f0f0" }, ticks: { font: { size: 11 } } },
-            },
-          }}
-        />
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <h3 className="text-sm font-bold text-[#1a1f3d]">
+            {chartView === "bar" ? "Yield Comparison (q/acre)" : "Variety Radar (top 6)"}
+          </h3>
+          <div className="flex gap-1 rounded-lg border border-[#c8cdd3] p-0.5">
+            <button
+              onClick={() => setChartView("bar")}
+              className={`rounded-md px-3 py-1 text-xs font-semibold transition ${
+                chartView === "bar" ? "bg-green-600 text-white shadow-sm" : "text-gray-500 hover:bg-gray-100"
+              }`}
+            >
+              Bar
+            </button>
+            <button
+              onClick={() => setChartView("radar")}
+              className={`rounded-md px-3 py-1 text-xs font-semibold transition ${
+                chartView === "radar" ? "bg-green-600 text-white shadow-sm" : "text-gray-500 hover:bg-gray-100"
+              }`}
+            >
+              Radar
+            </button>
+          </div>
+        </div>
+        {chartView === "bar" ? (
+          <Bar
+            data={yieldData}
+            options={{
+              responsive: true,
+              plugins: { legend: { position: "bottom", labels: { font: { size: 11 } } } },
+              scales: {
+                x: { grid: { display: false }, ticks: { font: { size: 10 } } },
+                y: { grid: { color: "#f0f0f0" }, ticks: { font: { size: 11 } } },
+              },
+            }}
+          />
+        ) : (
+          <Radar
+            data={radarData}
+            options={{
+              responsive: true,
+              plugins: { legend: { position: "bottom", labels: { font: { size: 11 } } } },
+              scales: {
+                r: {
+                  min: 0,
+                  max: 100,
+                  ticks: { stepSize: 25, font: { size: 9 }, backdropColor: "transparent" },
+                  pointLabels: { font: { size: 10 } },
+                  grid: { color: "#e5e7eb" },
+                  angleLines: { color: "#e5e7eb" },
+                },
+              },
+            }}
+          />
+        )}
       </div>
 
       {/* Desktop table */}
