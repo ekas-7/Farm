@@ -1,6 +1,8 @@
 "use client";
 import { useState, useMemo } from "react";
 import rice from "@/app/data/crops/rice";
+import wheat from "@/app/data/crops/wheat";
+import potato from "@/app/data/crops/potato";
 import {
   type CropIntelligence,
   type Variety,
@@ -713,7 +715,7 @@ function SubTypeContent({ sub, accentBar }: { sub: CropIntelligence["subTypes"][
 }
 
 // ── MAIN PAGE ─────────────────────────────────────────────────────────────────
-const ALL_CROPS: CropIntelligence[] = [rice];
+const ALL_CROPS: CropIntelligence[] = [rice, wheat, potato];
 
 const NAV_SECTIONS = [
   { id: "overview", label: "Overview" },
