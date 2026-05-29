@@ -50,6 +50,12 @@ export default function Header() {
               {label}
             </a>
           ))}
+          <Link
+            href="/intelligence"
+            className="relative py-1 transition-colors text-green-700 font-semibold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-green-600 after:transition-all after:duration-200 hover:after:w-full"
+          >
+            Crop Intelligence
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -109,6 +115,13 @@ export default function Header() {
               {label}
             </a>
           ))}
+          <Link
+            href="/intelligence"
+            onClick={() => setMenuOpen(false)}
+            className="block py-3 text-sm font-semibold text-green-700 border-b border-gray-100 hover:text-green-800"
+          >
+            📊 Crop Intelligence
+          </Link>
           <Link
             href="/farmer/register"
             onClick={() => setMenuOpen(false)}
