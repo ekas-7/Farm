@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 type WorkItem = {
   title: string;
@@ -6,6 +7,7 @@ type WorkItem = {
   image: string;
   alt: string;
   reverse?: boolean;
+  cta?: { label: string; href: string };
 };
 
 export default function WorkItems({ items }: { items: WorkItem[] }) {
@@ -50,6 +52,14 @@ export default function WorkItems({ items }: { items: WorkItem[] }) {
               <p className="mt-4 max-w-md text-base leading-relaxed text-gray-500">
                 {item.description}
               </p>
+              {item.cta && (
+                <Link
+                  href={item.cta.href}
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-green-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700 active:scale-95"
+                >
+                  {item.cta.label} →
+                </Link>
+              )}
             </div>
           </div>
         ))}

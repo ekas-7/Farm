@@ -62,6 +62,12 @@ export default function Header() {
             <span className="h-2 w-2 rounded-full bg-[#25D366] animate-pulse" />
             WhatsApp
           </a>
+          <Link
+            href="/farmer/register"
+            className="hidden rounded-full border border-green-600 px-4 py-2 text-sm font-semibold text-green-700 transition hover:bg-green-50 active:scale-95 sm:inline-block"
+          >
+            Farmer Login
+          </Link>
           <a
             href="#listings"
             className="rounded-full bg-green-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700 active:scale-95"
@@ -103,11 +109,18 @@ export default function Header() {
               {label}
             </a>
           ))}
+          <Link
+            href="/farmer/register"
+            onClick={() => setMenuOpen(false)}
+            className="mt-1 mb-1 block py-3 text-sm font-semibold text-green-700 border-b border-gray-100 hover:text-green-800"
+          >
+            🌾 Farmer Portal
+          </Link>
           <a
             href="https://wa.me/919877263109"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-3 mb-2 flex items-center gap-2 text-sm font-semibold text-green-700"
+            className="mt-2 mb-2 flex items-center gap-2 text-sm font-semibold text-green-700"
           >
             <span className="h-2 w-2 rounded-full bg-[#25D366]" />
             WhatsApp Us
